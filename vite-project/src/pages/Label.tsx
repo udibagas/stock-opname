@@ -52,7 +52,7 @@ export default function Label() {
               <div>
                 <h3 className="font-bold">PT SNS</h3>
                 <div className="text-bold line-clamp-1">{item.ITEMDESCRIPTION}</div>
-                <div className="text-bold">{item.ITEMCODE}</div>
+                <div className="text-bold">{item.ITEMCODE.toString().padStart(8, '0')}</div>
               </div>
             </div>
           )
