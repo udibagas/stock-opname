@@ -13,7 +13,9 @@ export default function Label() {
     fetch(apiUrl)
       .then(res => res.json())
       .then(data => {
-        setItems(data.data.slice(1).map((x: string[]) => {
+        const allData = data.data.slice(1).filter((x: any[]) => x[6] > 0)
+
+        setItems(allData.map((x: string[]) => {
           const [SITECODE, STORECODE, STOCKGROUPCODE, ITEMCODE, ITEMDESCRIPTION, UOMCODE, QTYONHAND, QTYREAL, Timestamp] = x;
           return {
             SITECODE,
