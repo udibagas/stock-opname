@@ -16,7 +16,7 @@ export interface Item {
   SITECODE: string
   STORECODE: string
   STOCKGROUPCODE: string
-  ITEMCODE: number
+  ITEMCODE: string
   ITEMDESCRIPTION: string
   UOMCODE: string
   QTYONHAND: number

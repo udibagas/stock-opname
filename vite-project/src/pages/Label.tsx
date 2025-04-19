@@ -47,12 +47,12 @@ export default function Label() {
           return (
             <div key={index} className={`flex gap-2 border-1 border-slate-400 p-2 w-[300px] h-[100px] items-center ${breakPage ? 'break-after-page' : ''}`}>
               <div className="w-[80px] h-[80px]">
-                <QRCode size={80} value={item.ITEMCODE.toString()} />
+                <QRCode size={80} value={item.ITEMCODE} />
               </div>
               <div>
                 <h3 className="font-bold">PT SNS</h3>
                 <div className="text-bold line-clamp-1">{item.ITEMDESCRIPTION}</div>
-                <div className="text-bold">{item.ITEMCODE.toString().padStart(8, '0')}</div>
+                <div className="text-bold">{item.ITEMCODE}</div>
               </div>
             </div>
           )
