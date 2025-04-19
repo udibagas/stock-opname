@@ -12,7 +12,7 @@ import { QrCode, StopCircle } from 'lucide-react'
 //   }
 // }
 
-interface Item {
+export interface Item {
   SITECODE: string
   STORECODE: string
   STOCKGROUPCODE: string
@@ -154,86 +154,88 @@ export default function Home() {
   }
 
   return (
-    <section className='flex flex-col gap-5 items-center justify-center'>
-      {/* <video id="qr-video" className='border-2 border-green-500 h-[300px] w-[300px] rounded-lg'></video> */}
-      <video id="qr-video"></video>
+    <main className="p-8 h-screen w-screen flex flex-col gap-3 items-center justify-end">
+      <section className='flex flex-col gap-5 items-center justify-center'>
+        {/* <video id="qr-video" className='border-2 border-green-500 h-[300px] w-[300px] rounded-lg'></video> */}
+        <video id="qr-video"></video>
 
-      {item && (
-        <div className="w-full">
-          <h3 className="text-lg font-bold text-slate-600 mb-4 text-center">{item.ITEMDESCRIPTION}</h3>
+        {item && (
+          <div className="w-full">
+            <h3 className="text-lg font-bold text-slate-600 mb-4 text-center">{item.ITEMDESCRIPTION}</h3>
 
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>Item Code</div>
-            <div className='font-bold'> {item.ITEMCODE} </div>
-          </div>
-
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>Site Code</div>
-            <div className='font-bold'> {item.SITECODE} </div>
-          </div>
-
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>Store Code</div>
-            <div className='font-bold'> {item.STORECODE} </div>
-          </div>
-
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>Stock Group Code</div>
-            <div className='font-bold'> {item.STOCKGROUPCODE} </div>
-          </div>
-
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>UOM Code</div>
-            <div className='font-bold'> {item.UOMCODE} </div>
-          </div>
-
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>Qty On Hand</div>
-            <div className='font-bold'> {item.QTYONHAND} </div>
-          </div>
-
-          <div className='flex gap-2 justify-between'>
-            <div className='text-slate-400'>Last Update</div>
-            <div className='font-bold'>
-              {
-                item.Timestamp
-                  ? new Date(item.Timestamp)
-                    .toLocaleDateString('id-ID', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })
-                  : '-'}
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Item Code</div>
+              <div className='font-bold'> {item.ITEMCODE} </div>
             </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Site Code</div>
+              <div className='font-bold'> {item.SITECODE} </div>
+            </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Store Code</div>
+              <div className='font-bold'> {item.STORECODE} </div>
+            </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Stock Group Code</div>
+              <div className='font-bold'> {item.STOCKGROUPCODE} </div>
+            </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>UOM Code</div>
+              <div className='font-bold'> {item.UOMCODE} </div>
+            </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Qty On Hand</div>
+              <div className='font-bold'> {item.QTYONHAND} </div>
+            </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Last Update</div>
+              <div className='font-bold'>
+                {
+                  item.Timestamp
+                    ? new Date(item.Timestamp)
+                      .toLocaleDateString('id-ID', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })
+                    : '-'}
+              </div>
+            </div>
+
+            <button disabled={isUpdating} onClick={() => showStockForm()} className='border-1 border-green-500 text-green-500 rounded-lg p-2 flex items-center gap-2 w-full justify-center mt-8'>
+              {isUpdating ? 'Updating Data...' : "Update Stock"}
+            </button>
           </div>
+        )}
 
-          <button disabled={isUpdating} onClick={() => showStockForm()} className='border-1 border-green-500 text-green-500 rounded-lg p-2 flex items-center gap-2 w-full justify-center mt-8'>
-            {isUpdating ? 'Updating Data...' : "Update Stock"}
-          </button>
-        </div>
-      )}
+        {error && (
+          <div className="text-red-500">
+            {error}
+          </div>
+        )}
 
-      {error && (
-        <div className="text-red-500">
-          {error}
-        </div>
-      )}
+        {isLoading && (
+          <div className="text-slate-500">
+            Fetching Data...
+          </div>
+        )}
 
-      {isLoading && (
-        <div className="text-slate-500">
-          Fetching Data...
-        </div>
-      )}
+        {!isScanning && <button disabled={isUpdating} onClick={() => scan()} className="bg-green-500 text-white rounded-lg p-2 flex items-center gap-2 w-full justify-center">
+          <QrCode />
+        </button>}
 
-      {!isScanning && <button disabled={isUpdating} onClick={() => scan()} className="bg-green-500 text-white rounded-lg p-2 flex items-center gap-2 w-full justify-center">
-        <QrCode />
-      </button>}
-
-      {isScanning && <button onClick={() => stopScan()} className="bg-red-500 text-white rounded-lg p-2 flex items-center gap-2 w-full justify-center">
-        <StopCircle />
-      </button>}
-    </section>
+        {isScanning && <button onClick={() => stopScan()} className="bg-red-500 text-white rounded-lg p-2 flex items-center gap-2 w-full justify-center">
+          <StopCircle />
+        </button>}
+      </section>
+    </main>
   )
 }
