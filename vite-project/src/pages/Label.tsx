@@ -13,13 +13,14 @@ export default function Label() {
     fetch(apiUrl)
       .then(res => res.json())
       .then(data => {
-        const allData = data.data.slice(1).filter((x: any[]) => x[6] > 0)
+        const allData = data.data.slice(1).filter((x: any[]) => x[7] > 0)
 
         setItems(allData.map((x: string[]) => {
-          const [SITECODE, STORECODE, STOCKGROUPCODE, ITEMCODE, ITEMDESCRIPTION, UOMCODE, QTYONHAND, QTYREAL, Timestamp] = x;
+          const [SITECODE, STORECODE, RACKCODE, STOCKGROUPCODE, ITEMCODE, ITEMDESCRIPTION, UOMCODE, QTYONHAND, QTYREAL, Timestamp] = x;
           return {
             SITECODE,
             STORECODE,
+            RACKCODE,
             STOCKGROUPCODE,
             ITEMCODE,
             ITEMDESCRIPTION,
@@ -53,8 +54,11 @@ export default function Label() {
               <div className="w-[80px] h-[80px]">
                 <QRCode size={80} value={item.ITEMCODE} />
               </div>
-              <div>
-                <h3 className="font-bold">PT SNS</h3>
+              <div className="w-full">
+                <div className="flex justify-between">
+                  <div className="font-bold">PT SNS</div>
+                  <div className="font-bold text-red-500">{item.RACKCODE}</div>
+                </div>
                 <div className="text-bold line-clamp-1">{item.ITEMDESCRIPTION}</div>
                 <div className="text-bold">{item.ITEMCODE}</div>
               </div>

@@ -15,6 +15,7 @@ import { QrCode, StopCircle } from 'lucide-react'
 export interface Item {
   SITECODE: string
   STORECODE: string
+  RACKCODE: string
   STOCKGROUPCODE: string
   ITEMCODE: string
   ITEMDESCRIPTION: string
@@ -174,6 +175,12 @@ export default function Home() {
               <div className='text-slate-400'>Store Code</div>
               <div className='font-bold'> {item.STORECODE} </div>
             </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Rack Code</div>
+              <div className='font-bold'> {item.RACKCODE} </div>
+            </div>
+
 
             <div className='flex gap-2 justify-between'>
               <div className='text-slate-400'>Stock Group Code</div>
