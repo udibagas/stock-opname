@@ -20,6 +20,7 @@ export interface Item {
   ITEMDESCRIPTION: string
   UOMCODE: string
   QTYONHAND: number
+  QTYREAL: number
   Timestamp: string
 }
 
@@ -112,10 +113,6 @@ export default function Home() {
 
     if (!newStock) return;
 
-    if (Number(newStock) == item?.QTYONHAND) {
-      return;
-    }
-
     if (isNaN(Number(newStock))) {
       return alert('Invalid stock value');
     }
@@ -191,6 +188,11 @@ export default function Home() {
             <div className='flex gap-2 justify-between'>
               <div className='text-slate-400'>Qty On Hand</div>
               <div className='font-bold'> {item.QTYONHAND} </div>
+            </div>
+
+            <div className='flex gap-2 justify-between'>
+              <div className='text-slate-400'>Qty Real</div>
+              <div className='font-bold'> {item.QTYREAL} </div>
             </div>
 
             <div className='flex gap-2 justify-between'>

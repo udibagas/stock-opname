@@ -14,7 +14,7 @@ export default function Label() {
       .then(res => res.json())
       .then(data => {
         setItems(data.data.slice(1).map((x: string[]) => {
-          const [SITECODE, STORECODE, STOCKGROUPCODE, ITEMCODE, ITEMDESCRIPTION, UOMCODE, QTYONHAND, Timestamp] = x;
+          const [SITECODE, STORECODE, STOCKGROUPCODE, ITEMCODE, ITEMDESCRIPTION, UOMCODE, QTYONHAND, QTYREAL, Timestamp] = x;
           return {
             SITECODE,
             STORECODE,
@@ -23,6 +23,7 @@ export default function Label() {
             ITEMDESCRIPTION,
             UOMCODE,
             QTYONHAND,
+            QTYREAL,
             Timestamp
           }
         }))
@@ -37,6 +38,7 @@ export default function Label() {
 
   return (
     <main className="m-auto my-8">
+      <h1 className="text-3xl text-center mb-8">STOCK OPNAME PT. SNS</h1>
       {isLoading && <div className="text-center">Loading...</div>}
       {error && <div className="text-red-500 text-center">{error}</div>}
 
