@@ -15,7 +15,7 @@ export default function Label() {
       .then(data => {
         const allData = data.data.slice(1).filter((x: any[]) => x[7] > 0)
 
-        setItems(allData.map((x: string[]) => {
+        const allItems = allData.map((x: string[]) => {
           const [SITECODE, STORECODE, RACKCODE, STOCKGROUPCODE, ITEMCODE, ITEMDESCRIPTION, UOMCODE, QTYONHAND, QTYREAL, Timestamp] = x;
           return {
             SITECODE,
@@ -29,7 +29,12 @@ export default function Label() {
             QTYREAL,
             Timestamp
           }
-        }))
+        }).sort((a: Item, b: Item) => {
+          if (a.RACKCODE < b.RACKCODE) return -1
+          if (a.RACKCODE > b.RACKCODE) return 1
+        })
+
+        setItems(allItems)
       })
       .catch(err => {
         setError(err.message)
