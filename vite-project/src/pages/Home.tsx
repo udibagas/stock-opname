@@ -152,7 +152,7 @@ export default function Home() {
   }
 
   return (
-    <main className="p-8 h-screen w-screen flex flex-col gap-3 items-center justify-end">
+    <main className="p-8 w-screen flex flex-col gap-3 items-center justify-end" style={{ height: '100dvh' }}>
       <section className='flex flex-col gap-5 items-center justify-center'>
         {/* <video id="qr-video" className='border-2 border-green-500 h-[300px] w-[300px] rounded-lg'></video> */}
         <video id="qr-video"></video>
