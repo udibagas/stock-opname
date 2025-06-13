@@ -31,7 +31,7 @@ interface ApiResponse {
   data?: Item
 }
 
-const apiUrl = "https://script.google.com/macros/s/AKfycbyC_LSHlZhLnftxFAeFPhsMWn2EVayH-vJqMF0F7PJIAEPhdkP9AClSKEKKfPXuHaBb/exec"
+const apiUrl = "https://script.google.com/macros/s/AKfycbx9XUYjd17pIrUcCynRufXAyX58TS4Agi2IFyEZqAvjFcGLqhDJw7N9pcexEX8Oo9Ye8A/exec"
 let qrScanner: QrScanner | null = null
 
 export default function Home() {

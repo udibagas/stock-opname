@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Item } from "./Home"
 import QRCode from "react-qr-code";
 
-const apiUrl = 'https://script.google.com/macros/s/AKfycbyC_LSHlZhLnftxFAeFPhsMWn2EVayH-vJqMF0F7PJIAEPhdkP9AClSKEKKfPXuHaBb/exec?action=getAll';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbx9XUYjd17pIrUcCynRufXAyX58TS4Agi2IFyEZqAvjFcGLqhDJw7N9pcexEX8Oo9Ye8A/exec?action=getAll';
 
 export default function Label() {
   const [items, setItems] = useState<Item[]>([])
