@@ -102,10 +102,6 @@ export default function Home() {
       return setError(res.statusText);
     }
 
-    if (json.status != 200) {
-      return setError(json.message);
-    }
-
     setItem(json.data);
   }
 
@@ -142,10 +138,6 @@ export default function Home() {
 
     if (!res.ok) {
       return setError(res.statusText);
-    }
-
-    if (json.status != 200) {
-      return setError(json.message);
     }
 
     setItem(json.data);
